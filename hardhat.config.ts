@@ -3,6 +3,7 @@ import "@nomicfoundation/hardhat-toolbox";
 import "hardhat-gas-reporter"
 import "./scripts/task";
 import "xdeployer"
+import "@nomiclabs/hardhat-solhint"
 
 let word1 = 'test test test test test test test '
 let word2 = 'test test test test junk'

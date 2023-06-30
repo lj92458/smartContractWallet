@@ -14,6 +14,7 @@
     "ts-check": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
+    "@nomiclabs/hardhat-solhint": "^3.0.1",
     "hardhat": "^2.14.0",
     "xdeployer": "^1.2.7"
   },

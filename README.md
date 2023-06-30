@@ -1,4 +1,4 @@
-# Sample Hardhat Project
+# smart contract wallet
 1. 当前阶段，如果项目是TypeScript项目，就不能使用ESM模式（不能在package.json里面指定"type": "module"）。
 2. 配置forking参数，能把某个网络的当前状态都复制过来，包括所有已经部署的合约 https://hardhat.org/hardhat-network/docs/reference#forking . 推荐从Infura或Alchemy分叉
 3. hardhat可以模拟出任何地址的钱包，以该地址发起交易。signer= ethers.getImpersonatedSigner(); ethers.getContractFactory("xxx", signer) 或者： 
@@ -23,4 +23,6 @@ npx hardhat node
 npx hardhat run scripts/deploy.ts --network hardhat
 [win cmd] set key=pwd & npx hardhat run scripts/deploy.ts --network hardhat
 [win powerShell] $env:key="pwd" ; npx hardhat run scripts/deploy.ts --network hardhat
+[win powerShell] $env:key="pwd" ; npx hardhat xdeploy
+npx hardhat verify --network arbitrum 0xe068a01e11aCfA03A4c8de63dAd451E77a22CFfF 0xb0d1435590b4f14a5f4414f93489945546162ffc 0x0000000000000000000000000000000000000000
 ```
