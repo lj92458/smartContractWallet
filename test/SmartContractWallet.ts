@@ -54,7 +54,7 @@ describe("SmartContractWallet", function () {
             let receipt = await (await smartContractWallet.aggregate3Value([
                     {
                         target: wethAddress,
-                        allowFailure: true,
+                        allowFailure: false,
                         value: '100000000000000000',// 把0.1个eth变成weth
                         callData: (await wethContract.populateTransaction.deposit()).data + ''
                     },
@@ -71,7 +71,7 @@ describe("SmartContractWallet", function () {
                 receipt = await (await smartContractWallet.aggregate3Value([
                         {
                             target: swapRouter,
-                            allowFailure: true,
+                            allowFailure: false,
                             value: 0,
                             callData: (await swapRouterContract.populateTransaction.exactInputSingle([
                                     wethAddress,

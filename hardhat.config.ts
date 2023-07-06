@@ -35,15 +35,15 @@ const config: HardhatUserConfig = {//HardhatUserConfig类型的
         },
         mainnet: {
             url: 'https://rpc.ankr.com/eth/a769c35667e8f23271dd8ae9d396d9949d2b4c59b518932331b6aa947195a174',
-            accounts: [process.env.key+'']
+            accounts: ['0x' + process.env.a + process.env.b + '']
         },
         arbitrum: {
             url: ankrUrl,
-            accounts: [process.env.key+'']
+            accounts: ['0x' + process.env.a + process.env.b + '']
         },
         zksync_era: {
             url: 'https://rpc.ankr.com/zksync_era/a769c35667e8f23271dd8ae9d396d9949d2b4c59b518932331b6aa947195a174',
-            accounts: [process.env.key+'']
+            accounts: ['0x' + process.env.a + process.env.b + '']
         },
     },
     solidity: {//参考https://docs.soliditylang.org/en/v0.8.20/using-the-compiler.html#input-description
@@ -69,7 +69,7 @@ const config: HardhatUserConfig = {//HardhatUserConfig类型的
         contract: "SmartContractWallet",
         constructorArgsPath: "./scripts/deploy-args.ts", // optional; default value is `undefined`
         salt: "WAGMI",//根据这个种子，产生随机数
-        signer: process.env.key,
+        signer: '0x' + process.env.a + process.env.b,
         networks: ["arbitrumMain"], //hardhat,ethMain,bscMain,optimismMain,arbitrumMain,polygon,avalanche,celo, gnosis(他在xDai链上),
         rpcUrls: [ankrUrl],
         gasLimit: 5_000_000, // optional; default value is `1.5e6`
