@@ -10,7 +10,7 @@ async function getWallet(isReal: boolean) {
     if (isReal) {
         [hardhatWallet] = await ethers.getSigners()
     } else {
-        hardhatWallet = await ethers.getImpersonatedSigner("0xb0d1435590b4f14a5f4414f93489945546162ffc")
+        hardhatWallet = await ethers.getImpersonatedSigner("0x59f662CF5ec57E1503c2eDEa084797428BBe00FF")
     }
     return hardhatWallet
 }

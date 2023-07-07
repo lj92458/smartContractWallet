@@ -17,12 +17,12 @@ Try running some of the following tasks:
 ```shell
 npx hardhat help
 npx hardhat compile
-npx hardhat test
+$env:a="xxx";$env:b="xxx";  npx hardhat test
 REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.ts --network hardhat
 [win cmd] set key=pwd & npx hardhat run scripts/deploy.ts --network hardhat
-[win powerShell] $env:key="pwd" ; npx hardhat run scripts/deploy.ts --network hardhat
-[win powerShell] $env:key="pwd" ; npx hardhat xdeploy
-npx hardhat verify --network arbitrum 0xe068a01e11aCfA03A4c8de63dAd451E77a22CFfF 0xb0d1435590b4f14a5f4414f93489945546162ffc 0x0000000000000000000000000000000000000000
+[win powerShell] $env:a="xxx";$env:b="xxx"; npx hardhat run scripts/deploy.ts --network hardhat
+[win powerShell] $env:a="xxx";$env:b="xxx"; npx hardhat xdeploy
+npx hardhat verify --network arbitrum 0x7c487F80BEe3D7aF9047Ee0E790f2B2A8BDBF1eC 0x59f662CF5ec57E1503c2eDEa084797428BBe00FF 0x0000000000000000000000000000000000000000
 ```

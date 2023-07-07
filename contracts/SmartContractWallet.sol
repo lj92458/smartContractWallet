@@ -18,6 +18,7 @@ contract SmartContractWallet {
         _;
     }
     event event_Multicall3(bool success, bytes returnData);
+    event event_Multicall3Single(bool success, bytes returnData);
 
     /// only used when contract is deployed
     /// @param _owner who's wallet address
@@ -35,7 +36,6 @@ contract SmartContractWallet {
     /// receive function can give the ability to receive eth
     receive() external payable {}
 
-
     /// delegatecall the function multicall3.aggregate3Value. This let you run many non-static functions from any other contracts.
     /// you can use ethersJS interface.decodeEventLog to decode event_Multicall3; then use decodeFunctionResult to
     /// decode returnData to aggregate3Value's returns: [{bool success,bytes returnData}], (you need use the function abi); then decode inner returnData to origin returns (use origin abi).
@@ -48,7 +48,10 @@ contract SmartContractWallet {
         emit event_Multicall3(success, returnData);
     }
 
-
+    function aggregate3ValueSingle(IMulticall3.Call3Value calldata call) public payable onlyOwner {
+        (bool success, bytes memory returnData) = call.target.call{value: call.value}(call.callData);
+        emit event_Multicall3Single(success, returnData);
+    }
 
     /// get this contract's eth
     function ethTransfer(address payable to, uint256 valueWEI) public onlyOwner returns (bool) {
@@ -62,8 +65,8 @@ contract SmartContractWallet {
         return IERC20(tokenAddress).transfer(to, value);
     }
 
-    function erc20BalanceOf(address tokenAddress, address owner) public view onlyOwner returns (uint256){
-        return IERC20(tokenAddress).balanceOf(owner);
+    function erc20BalanceOf(address tokenAddress, address _owner) public view returns (uint256){
+        return IERC20(tokenAddress).balanceOf(_owner);
     }
 
     /// approve spender to spend this contract's erc20 token
