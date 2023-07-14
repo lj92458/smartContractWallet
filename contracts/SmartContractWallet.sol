@@ -41,13 +41,12 @@ contract SmartContractWallet {
     /// decode returnData to aggregate3Value's returns: [{bool success,bytes returnData}], (you need use the function abi); then decode inner returnData to origin returns (use origin abi).
     /// hardhat's ContractReceipt has automatically decode event_Multicall3.
     function aggregate3Value(IMulticall3.Call3Value[] calldata calls) public payable onlyOwner {
-        //delegatecall cann't set value,can just set gas.   {gas: 1000000, value: 1 ether }
+        //delegatecall cann't set value,can just set gas. It spend wallet's value(wallet must has enough value, otherwise provider will throw error).   {gas: 1000000, value: 1 ether }
         (bool success, bytes memory returnData) = multicall3Address.delegatecall(abi.encodeCall(IMulticall3.aggregate3Value, calls));
-        //console.log("returnData=");
-        //console.logBytes(returnData);
         emit event_Multicall3(success, returnData);
     }
 
+    /// use this when you don't want to spend wallet's value, or wallet have not enough value
     function aggregate3ValueSingle(IMulticall3.Call3Value calldata call) public payable onlyOwner {
         (bool success, bytes memory returnData) = call.target.call{value: call.value}(call.callData);
         emit event_Multicall3Single(success, returnData);
